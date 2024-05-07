@@ -11,7 +11,18 @@
 <body>
     <div class="container">
         <h1>Reddit API Example</h1>
+        <button onclick="getPopularSubreddits()">Get Popular Subreddits</button>
+        <div id="popularSubreddits"></div>
+
+        <input type="text" id="subredditInput" placeholder="Enter subreddit name">
+        <button onclick="getPosts()">Get Posts</button>
+        <div id="posts"></div>
+
+        <input type="text" id="autocompleteInput" placeholder="Enter search query">
+        <button onclick="autocomplete()">Search Subreddits</button>
+        <div id="autocompleteResults"></div>
         <!--to continue-->
+
     </div>
 </body>
 </html>

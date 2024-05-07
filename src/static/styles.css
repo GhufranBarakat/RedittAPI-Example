@@ -24,4 +24,9 @@ input {
     padding: 10px;
     margin: 10px;
 }
+
+#popularSubreddits, #posts, #autocompleteResults {
+    margin-top: 20px;
+}
+
  
