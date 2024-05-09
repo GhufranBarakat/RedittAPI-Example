@@ -21,7 +21,8 @@ Dieses Projekt ist ein einfaches Beispiel für die Verwendung der Reddit API. Es
     [Reddit-Konto erstellen]
     [In Reddit-Entwicklerseite sich regestrieren]
 
-### Generierung des Access Tokens
+### Generierung des Access Tokens(Zwei Möglichkeiten)
+#### 1. Postmann
     Neue Anfrage in Postmann erstellen.
     POST-Methode auswählen und folgende URL hinzufügen: https://www.reddit.com/api/v1/access_token.
     Zu Registerkarte "Body" gehen und "x-www-form-urlencoded" wählen.
@@ -29,8 +30,43 @@ Dieses Projekt ist ein einfaches Beispiel für die Verwendung der Reddit API. Es
     Auf "Senden" klicken, um die Anfrage zu senden.
     Der Access-Token wird in der Antwort angezeigt.
 
+#### 2. Python Code
+    import requests
+    from requests.auth import HTTPBasicAuth
+
+    client_id = '***'
+    client_secret = '***'
+    reddit_username = '***'
+    reddit_password = '***'
+
+    data = {
+        'grant_type': 'password',
+        'username': reddit_username,
+        'password': reddit_password
+    }
+
+    def get_access_token():
+        while True:
+            try:
+            response = requests.post('https://www.reddit.com/api/v1/access_token',
+                                    auth=HTTPBasicAuth(client_id, client_secret),
+                                    data=data)
+            response.raise_for_status()
+            return response.json()
+            except requests.exceptions.HTTPError as err:
+            if err.response.status_code == 429:
+                print("Error:", err, "Retrying...")
+            else:
+                print("Unexpected error:", err)
+                raise  
+
+    access_token = get_access_token()
+    print(access_token)
+
+    '''Ausführen und die Ausgabe in settings.json schreiben'''
+
 ## Ausführung
     python api.py
 
 ## Verwendung
-    Im Browser http://localhost:5000 eingeben
+    Im Browser 'http://localhost:5000' eingeben

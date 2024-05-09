@@ -1,9 +1,7 @@
 {
-    "reddit": {
-      "client_id": "***",
-      "client_secret": "***",
-      "username": "****",
-      "password": "*****"
-    }
-  }
+  "access_token": "Asdndw***", 
+  "token_type": "bearer", 
+  "expires_in": 86400, 
+  "scope": "*"
+}
   
