@@ -24,22 +24,20 @@ function getPosts() {
 
 function autocomplete() {
     const query = document.getElementById('autocompleteInput').value;
-    const body = {
-        query: query,
-        exact: false,
-        include_over_18: false
-    };
     fetch('/autocomplete', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ query: query })
     })
     .then(response => response.json())
     .then(data => {
-        const autocompleteResults = document.getElementById('autocompleteResults');
-        autocompleteResults.innerHTML = data.join('<br>');
+      const autocompleteResults = document.getElementById('autocompleteResults');
+      autocompleteResults.innerHTML = '';
+      data.forEach(result => {
+        autocompleteResults.innerHTML += `<p>${result}</p>`;
+      });
     })
     .catch(error => console.error('Error:', error));
 }
