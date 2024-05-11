@@ -6,20 +6,29 @@
     <link rel="stylesheet" href="static/styles.css">
     <script src="static/scripts.js"></script>
 
+    <link rel="shortcut icon" type="image/png" href="static/fav.png">
+
     <title>Reddit API Example</title>
 </head>
 <body>
     <div class="container">
         <h1>Reddit API Example</h1>
         <button onclick="getPopularSubreddits()">Get Popular Subreddits</button>
+        <br>
         <div id="popularSubreddits"></div>
+        <br><br>
 
         <input type="text" id="subredditInput" placeholder="Enter subreddit name">
+        <br><br>
         <button onclick="getPosts()">Get Posts</button>
+        <br>
         <div id="posts"></div>
+        <br><br>
 
         <input type="text" id="autocompleteInput" placeholder="Enter search query">
+        <br><br>
         <button onclick="autocomplete()">Search Subreddits</button>
+        <br>
         <div id="autocompleteResults"></div>
         <!--to continue-->
 

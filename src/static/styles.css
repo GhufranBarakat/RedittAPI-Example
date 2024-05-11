@@ -1,32 +1,65 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
     margin: 0;
     padding: 0;
 }
 
 .container {
     max-width: 800px;
-    margin: 50px auto;
-    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
+    text-align: center;
     color: #333;
 }
 
 button {
     padding: 10px 20px;
-    margin: 10px;
+    font-size: 16px;
+    background-color: #2a104c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-input {
+button:hover {
+    background-color: #8624bb;
+}
+
+input[type="text"] {
     padding: 10px;
-    margin: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 140px);
+    margin-right: 10px;
 }
 
-#popularSubreddits, #posts, #autocompleteResults {
+textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 140px);
+    margin-right: 10px;
+}
+
+#popularSubreddits, #posts, #autocompleteResults{
     margin-top: 20px;
+    max-height: 200px;
+    overflow: auto;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
 }
 
- 
+#popularSubreddits p, #posts p, #autocompleteResults p {
+    margin-bottom: 10px;
+}
