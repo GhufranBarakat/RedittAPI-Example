@@ -6,9 +6,9 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    /*max-width: 800px;*/
     margin: 0 auto;
-    padding: 20px;
+    padding: 100px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -32,6 +32,7 @@ button {
 button:hover {
     background-color: #8624bb;
 }
+
 
 input[type="text"] {
     padding: 10px;
