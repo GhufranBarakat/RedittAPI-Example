@@ -1,0 +1,17 @@
+header{
+    margin-bottom: 20px;
+}
+#header_flexbox{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px;
+    align-items: center;
+}
+#header_image{
+    width: 100px;
+}
+#header_title{
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+}
