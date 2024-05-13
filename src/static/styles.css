@@ -10,14 +10,14 @@ body {
     margin: 0 auto;
     padding: 100px;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /*border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
 }
 
-h1 {
+/*h1 {
     text-align: center;
     color: #333;
-}
+}*/
 
 button {
     padding: 10px 20px;
@@ -28,11 +28,9 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-
-button:hover {
-    background-color: #8624bb;
-}
-
+    button:hover {
+        background-color: #8624bb;
+    }
 
 input[type="text"] {
     padding: 10px;
