@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/styles.css">
-    <script src="static/scripts.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
 
-    <link rel="shortcut icon" type="image/png" href="static/fav.png">
+    <link rel="shortcut icon" type="image/png" href="fav.png">
 
     <title>Reddit API Example</title>
 </head>
@@ -30,7 +30,16 @@
         <button onclick="autocomplete()">Search Subreddits</button>
         <br>
         <div id="autocompleteResults"></div>
-        <!--to continue-->
+
+        <div>
+            <input type="text" class="post_obj" placeholder="Insert the title of post...">
+            <textarea class="post_obj" placeholder="Insert something you want to post..."></textarea>
+            <button>
+                Create a post
+            </button>
+        </div>
+        <!-- JS Code currently not working, that's why only HTML, CSS -->
+        <!-- still need onclick() -->
 
     </div>
 </body>
