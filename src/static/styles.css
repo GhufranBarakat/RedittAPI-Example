@@ -60,6 +60,6 @@ textarea {
     padding: 10px;
 }
 
-#popularSubreddits p, #posts p, #autocompleteResults p {
+#popularSubreddits p, #posts p, #autocompleteResults p, .post_obj{
     margin-bottom: 10px;
 }
