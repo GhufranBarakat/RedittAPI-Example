@@ -1,8 +1,10 @@
 #import praw
-from flask import Flask, request, jsonify, send_from_directory
-import requests, json
-
 import time
+import urllib.parse
+
+import json
+import requests
+from flask import Flask, request, jsonify, send_from_directory
 
 MAX_RETRIES = 3
 INITIAL_DELAY = 1  # Initial delay in seconds
@@ -93,6 +95,24 @@ def autocomplete_subreddits_post():
         app.logger.error(f"An unexpected error occurred: {e}")
         return jsonify({'error': 'An unexpected error occurred'}), 500
 
+@app.route('/submit', methods=['POST'])
+def post_smth():
+    url = "https://oauth.reddit.com/api/submit"
+    data = {
+        'title': 'Huuuuuuuuuuuh?',
+        'kind': 'self',
+        'sr': 'testing_some_calls',
+        'resubmit': True,
+        'sendreplies': True,
+        'text': 'Test! ಠ_ಠ'
+    }
+    headers = {
+        'Authorization': f'Bearer {settings.get("token")}',
+        'Content-Type': 'application/x-www-form-urlencoded',
+    }
+    encoded_payload = urllib.parse.urlencode(data)
+    response = requests.request("POST", url, headers=headers, data=encoded_payload)
+    return response.json(), 200
 
 # Serve the static files
 @app.route('/static/<path:path>')
