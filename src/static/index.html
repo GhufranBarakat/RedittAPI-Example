@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="header.css">
     <script src="scripts.js"></script>
 
     <link rel="shortcut icon" type="image/png" href="fav.png">
@@ -11,8 +12,14 @@
     <title>Reddit API Example</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Reddit API Example</h1>
+    <header>
+        <div id="header_flexbox">
+            <img id="header_image" alt="Icon" src="fav.png">
+            <p id="header_title">Reddit API Example</p>
+            <a href="https://www.reddit.com/dev/api/oauth">Official API Documentation</a>
+        </div>
+    </header>
+    <main class="container">
         <button onclick="getPopularSubreddits()">Get Popular Subreddits</button>
         <br>
         <div id="popularSubreddits"></div>
@@ -40,7 +47,6 @@
         </div>
         <!-- JS Code currently not working, that's why only HTML, CSS -->
         <!-- still need onclick() -->
-
-    </div>
+    </main>
 </body>
 </html>
