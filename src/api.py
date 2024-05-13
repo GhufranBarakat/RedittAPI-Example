@@ -107,12 +107,13 @@ def post_smth():
         'text': 'Test! ಠ_ಠ'
     }
     headers = {
-        'Authorization': f'Bearer {settings.get("token")}',
+        'Authorization': f'Bearer {settings.get("access_token")}',
         'Content-Type': 'application/x-www-form-urlencoded',
     }
     encoded_payload = urllib.parse.urlencode(data)
     response = requests.request("POST", url, headers=headers, data=encoded_payload)
-    return response.json(), 200
+    #IDK what to return... response.json() throws 500 Error
+    return "I guess it worked...", 200
 
 # Serve the static files
 @app.route('/static/<path:path>')
