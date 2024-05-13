@@ -97,14 +97,14 @@ def autocomplete_subreddits_post():
 
 @app.route('/submit', methods=['POST'])
 def post_smth():
-    url = "https://oauth.reddit.com/api/submit"
+    post_data = request.get_json()
     data = {
-        'title': 'Huuuuuuuuuuuh?',
-        'kind': 'self',
-        'sr': 'testing_some_calls',
-        'resubmit': True,
-        'sendreplies': True,
-        'text': 'Test! ಠ_ಠ'
+        'title': post_data.get('title', 'Default Title'),
+        'kind': post_data.get('kind', 'self'),
+        'sr': post_data.get('sr', 'APITest_SWA'),
+        'resubmit': post_data.get('resubmit', True),
+        'sendreplies': post_data.get('sendreplies', True),
+        'text': post_data.get('text', 'Default Text')
     }
     headers = {
         'Authorization': f'Bearer {settings.get("access_token")}',
@@ -112,8 +112,11 @@ def post_smth():
     }
     encoded_payload = urllib.parse.urlencode(data)
     response = requests.request("POST", url, headers=headers, data=encoded_payload)
-    #IDK what to return... response.json() throws 500 Error
-    return "I guess it worked...", 200
+    
+    try:
+        return response.json(), 200
+    except ValueError:
+        return response.text, 200
 
 # Serve the static files
 @app.route('/static/<path:path>')

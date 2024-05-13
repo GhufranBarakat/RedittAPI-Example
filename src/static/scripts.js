@@ -64,5 +64,30 @@ function autocomplete() {
     .catch(error => console.error('Error:', error));
 }
   
+function createPost() {
+  const titleInput = document.querySelector('input.post_obj');
+  const textArea = document.querySelector('textarea.post_obj');
 
+  const data = {
+      'title': titleInput.value,
+      'kind': 'self',
+      'sr': 'APITest_SWA',
+      'resubmit': true,
+      'sendreplies': true,
+      'text': textArea.value
+  };
+
+  fetch('/submit', {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+  })
+  .catch(error => console.error('Error:', error));
+}
 // to continue

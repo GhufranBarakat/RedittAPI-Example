@@ -14,7 +14,10 @@
 <body>
     <header>
         <div id="header_flexbox">
-            <img id="header_image" alt="Icon" src="fav.png">
+            <div id="image_container">
+                <img id="header_image" alt="Icon" src="fav.png">
+                <img id="header_image" alt="Icon" src="augusto.png">
+            </div>
             <p id="header_title">Reddit API Example</p>
             <a href="https://www.reddit.com/dev/api/oauth">Official API Documentation</a>
         </div>
@@ -41,12 +44,8 @@
         <div>
             <input type="text" class="post_obj" placeholder="Insert the title of post...">
             <textarea class="post_obj" placeholder="Insert something you want to post..."></textarea>
-            <button>
-                Create a post
-            </button>
+            <button onclick="createPost()">Create a post</button>
         </div>
-        <!-- JS Code currently not working, that's why only HTML, CSS -->
-        <!-- still need onclick() -->
     </main>
 </body>
 </html>
