@@ -128,9 +128,18 @@ def makes_friend():
             "note": "Testing"
         }
     }
-    response = requests.put(url=url, data=json.dumps(data))
-    #NEEDTODO JSON Content returning
-    return "Success", 200
+    headers = {
+        'Authorization': f'Bearer {settings.get("access_token")}',
+        'Content-Type': 'application/json',
+    }
+    response = requests.put(url=url, data=json.dumps(data), headers=headers)
+    answer = response.json()
+
+    if response.status_code == 200:
+        return_string = "Success...\nId is: " + answer['id'] + " from that person: " + answer['name']
+        return return_string, 200
+    else:
+        return "Shit request", 404
 
 # Serve the static files
 @app.route('/static/<path:path>')
