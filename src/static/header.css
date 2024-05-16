@@ -7,6 +7,10 @@ header{
     margin: 10px 30px;
     align-items: center;
 }
+#image_container{
+    display: flex;
+    justify-content: flex-start;
+}
 #header_image{
     width: 100px;
 }
