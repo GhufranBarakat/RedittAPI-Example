@@ -120,7 +120,7 @@ def post_smth():
 
 @app.route('/friend', methods=['PUT'])
 def makes_friend():
-    name = "Auguuustooo"
+    name = "Cautious_Ad_286"
     url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
     data = {
         "json": {
@@ -138,27 +138,29 @@ def makes_friend():
     if response.status_code == 200:
         return_string = "Success...\nId is: " + answer['id'] + " from that person: " + answer['name']
         return return_string, 200
+    elif response.status_code == 429:
+        return "Too many requests in short time...", 429
     else:
-        return "Shit request", 404
+        return "Shit request", response.status_code
 
 @app.route('/unfriend', methods=['DELETE'])
 def removes_friend():
-    name = "Auguuustooo"
+    name, id = "Cautious_Ad_286", "t2_9tmwkvh2"
     url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
-    data = {
-        # Fix Variable einlesen
-    }
+    data = {"id": f"{id}"}
     headers = {
         'Authorization': f'Bearer {settings.get("access_token")}',
         'Content-Type': 'application/x-www-form-urlencoded'
     }
-    encoded_payload = urllib.parse.urlencode(data)
-    response = requests.delete(url=url, headers=headers, data=encoded_payload)
-
+    response = requests.delete(url=url, headers=headers, data=data)
     if response.status_code == 204:
         return "Delete was successful", 200
     elif response.status_code == 200:
         return response.json(), 200
+    elif response.status_code == 400:
+        return "U r not friends with that person...", 400
+    elif response.status_code == 429:
+        return "Too many requests in short time...", 429
     else:
         return "Shit request", response.status_code
 
