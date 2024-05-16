@@ -141,6 +141,27 @@ def makes_friend():
     else:
         return "Shit request", 404
 
+@app.route('/unfriend', methods=['DELETE'])
+def removes_friend():
+    name = "Auguuustooo"
+    url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
+    data = {
+        # Fix Variable einlesen
+    }
+    headers = {
+        'Authorization': f'Bearer {settings.get("access_token")}',
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+    encoded_payload = urllib.parse.urlencode(data)
+    response = requests.delete(url=url, headers=headers, data=encoded_payload)
+
+    if response.status_code == 204:
+        return "Delete was successful", 200
+    elif response.status_code == 200:
+        return response.json(), 200
+    else:
+        return "Shit request", response.status_code
+
 # Serve the static files
 @app.route('/static/<path:path>')
 def send_static(path):
