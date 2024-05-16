@@ -118,6 +118,20 @@ def post_smth():
     except ValueError:
         return response.text, 200
 
+@app.route('/friend', methods=['PUT'])
+def makes_friend():
+    name = "Auguuustooo"
+    url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
+    data = {
+        "json": {
+            "name": f"{name}",
+            "note": "Testing"
+        }
+    }
+    response = requests.put(url=url, data=json.dumps(data))
+    #NEEDTODO JSON Content returning
+    return "Success", 200
+
 # Serve the static files
 @app.route('/static/<path:path>')
 def send_static(path):
