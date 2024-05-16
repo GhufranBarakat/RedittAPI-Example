@@ -28,9 +28,10 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
-    button:hover {
-        background-color: #8624bb;
-    }
+
+button:hover {
+    background-color: #8624bb;
+}
 
 input[type="text"] {
     padding: 10px;
@@ -50,7 +51,7 @@ textarea {
     margin-right: 10px;
 }
 
-.input_fields{
+.input_fields, .remove_fields, .auto_fields, .posts_fields, .post_obj{
     margin-bottom: 10px;
     max-width: 500px;
 }

@@ -97,6 +97,7 @@ def autocomplete_subreddits_post():
 
 @app.route('/submit', methods=['POST'])
 def post_smth():
+    url = "https://oauth.reddit.com/api/submit"
     post_data = request.get_json()
     data = {
         'title': post_data.get('title', 'Default Title'),
@@ -120,49 +121,48 @@ def post_smth():
 
 @app.route('/friend', methods=['PUT'])
 def makes_friend():
-    name = "Cautious_Ad_286"
+    # name = "Cautious_Ad_286"
+    data = request.get_json()
+    if 'name' not in data:
+        return jsonify({'error': 'Username is required'}), 400
+
+    name = data['name']
     url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
-    data = {
-        "json": {
-            "name": f"{name}",
-            "note": "Testing"
-        }
-    }
     headers = {
         'Authorization': f'Bearer {settings.get("access_token")}',
         'Content-Type': 'application/json',
     }
-    response = requests.put(url=url, data=json.dumps(data), headers=headers)
-    answer = response.json()
+    response = requests.put(url=url, data=json.dumps({"json": {"name": name, "note": "Testing"}}), headers=headers)
 
     if response.status_code == 200:
-        return_string = "Success...\nId is: " + answer['id'] + " from that person: " + answer['name']
-        return return_string, 200
+        answer = response.json()
+        return jsonify({'message': f"Success... Id is: {answer['id']} from that person: {answer['name']}"}), 200
     elif response.status_code == 429:
-        return "Too many requests in short time...", 429
+        return jsonify({'error': 'Too many requests in short time...'}), 429
     else:
-        return "Shit request", response.status_code
-
+        return jsonify({'error': 'Bad request'}), response.status_code
+    
 @app.route('/unfriend', methods=['DELETE'])
 def removes_friend():
-    name, id = "Cautious_Ad_286", "t2_9tmwkvh2"
-    url: str = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
-    data = {"id": f"{id}"}
+    data = request.get_json()
+
+    if 'name' not in data:
+        return jsonify({'error': 'Benutzername ist erforderlich'}), 400
+
+    name = data['name']
+    url = f"https://oauth.reddit.com/api/v1/me/friends/{name}"
     headers = {
         'Authorization': f'Bearer {settings.get("access_token")}',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json',
     }
-    response = requests.delete(url=url, headers=headers, data=data)
+    response = requests.delete(url=url, headers=headers)
+
     if response.status_code == 204:
-        return "Delete was successful", 200
-    elif response.status_code == 200:
-        return response.json(), 200
-    elif response.status_code == 400:
-        return "U r not friends with that person...", 400
-    elif response.status_code == 429:
-        return "Too many requests in short time...", 429
+        return jsonify({'message': f"Success... {name} removed from the friendslist."}), 204
+    elif response.status_code == 404:
+        return jsonify({'error': f"User {name} not found."}), 404
     else:
-        return "Shit request", response.status_code
+        return jsonify({'error': 'Shit request'}), response.status_code
 
 # Serve the static files
 @app.route('/static/<path:path>')

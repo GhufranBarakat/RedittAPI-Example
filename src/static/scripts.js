@@ -84,10 +84,58 @@ function createPost() {
       },
       body: JSON.stringify(data)
   })
-  .then(response => response.json())
-  .then(data => {
-      console.log(data);
-  })
-  .catch(error => console.error('Error:', error));
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
 }
+
+function addFriend() {
+  const username = document.querySelector('.input_fields').value.trim();
+
+  if(!username){
+    alert('enter a username!');
+    return
+  }
+
+  fetch('/friend', {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: username})
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+function removeFriend() {
+  const username = document.querySelector('.remove_fields').value.trim();
+
+  if (!username) {
+    alert('enter a username!');
+    return;
+  }
+
+  fetch('/unfriend', {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name: username })
+  })
+    .then(response => {
+      if (response.ok) {
+        alert('Erfolg! Freund entfernt.');
+      } else {
+        alert('Fehler: ' + response.statusText);
+      }
+    })
+    .catch(error => console.error('Fehler:', error));
+}
+
 // to continue
