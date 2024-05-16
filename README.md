@@ -8,6 +8,7 @@ Dieses Projekt ist ein einfaches Beispiel für die Verwendung der Reddit API. Es
     api.py: Flask-Server und Backend-Logik.
     static/: Enthält statische Dateien wie HTML, CSS und JavaScript.
         index.html: Haupt-HTML-Datei für die Benutzeroberfläche.
+        header.css: CSS-Datei für das Styling des Headers der Website.
         styles.css: CSS-Datei für das Styling der Benutzeroberfläche.
         scripts.js: JavaScript-Datei für die Interaktion mit der Benutzeroberfläche.
     settings.json: Konfigurationsdatei für Reddit-API-Zugangsdaten.
@@ -15,7 +16,8 @@ Dieses Projekt ist ein einfaches Beispiel für die Verwendung der Reddit API. Es
 ## Einrichtung
 ### Bevor das Projekt ausführen, sicherstellen, dass Python installiert ist. 
     [Python Paket Installation]
-    pip install Flask
+    pip install flask
+    pip install requests
 
 ### Reddit API-Zugriff
     [Reddit-Konto erstellen]
